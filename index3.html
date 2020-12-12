@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Document</title>
+</head>
+<style>
+    .scene {
+        width: 200px;
+        height: 200px;
+        perspective: 600px;
+
+    }
+
+    .cube {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transform: translateZ(-100px);
+        animation: rotation 5s infinite;
+    }
+
+    .cube__face {
+        border: 1px solid black;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        font-size: 2.5rem;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .cube__face--front {
+        background: rgba(98, 206, 203, 0.7);
+
+        transform: rotateY(0deg) translateZ(100px);
+
+    }
+
+    .cube__face--right {
+        background: rgba(98, 155, 206, 0.7);
+        transform: rotateY(90deg) translateZ(100px);
+    }
+
+    .cube__face--back {
+        background: rgba(98, 101, 206, 0.7);
+        transform: rotateY(180deg) translateZ(100px);
+    }
+
+    .cube__face--left {
+        background: rgba(149, 98, 206, 0.7);
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .cube__face--top {
+        background: rgba(203, 98, 206, 0.7);
+        transform: rotateX(90deg) translateZ(100px);
+    }
+
+    .cube__face--bottom {
+        background: rgba(206, 98, 155, 0.7);
+        transform: rotateX(-90deg) translateZ(100px);
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: translateZ(-100px) rotate3d(0, 0, 1);
+        }
+        100% {
+            transform: translateZ(-100px) rotate3d(0, 1, 1, 360deg);
+        }
+    }
+</style>
+<body>
+<div class="scene">
+    <div class="cube">
+        <div class="cube__face cube__face--front">front</div>
+        <div class="cube__face cube__face--back">back</div>
+        <div class="cube__face cube__face--right">right</div>
+        <div class="cube__face cube__face--left">left</div>
+        <div class="cube__face cube__face--top">top</div>
+        <div class="cube__face cube__face--bottom">bottom</div>
+    </div>
+</div>
+</body>
+</html>
