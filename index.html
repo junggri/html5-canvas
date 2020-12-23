@@ -18,12 +18,36 @@
 RequsetAnimationFrame
 </body>
 <script>
+    // const canvas =document.querySelector(".canvas");
+    // const context=canvas.getContext("2d");
+    // let xPos=10;
+
+    // function draw(){
+    //     context.clearRect(0,0,canvas.width,canvas.height)
+    //     context.beginPath();
+    //     context.arc(xPos,150,10,0,Math.PI*2,false);
+    //     context.fill()
+    //     xPos+=3;
+    //     // requestAnimationFrame(draw)
+    // }
+    // draw()
     const canvas =document.querySelector(".canvas");
     const context=canvas.getContext("2d");
-    
+    let xPos=10;
+    let count=0;
+
+
     function draw(){
-        context.arc(10,150,10,0,Math.PI*2,false);
-        context.fill()
+        if(count%30===0){
+     
+            context.clearRect(0,0,canvas.width,canvas.height)
+            context.beginPath();
+            context.arc(xPos,150,10,0,Math.PI*2,false);
+            context.fill()
+            xPos+=3;
+        }
+        count++;
+        // requestAnimationFrame(draw)
     }
     draw()
 </script>
