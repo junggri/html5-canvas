@@ -1,54 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport">
-    <meta content="ie=edge" http-equiv="X-UA-Compatible">
-
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
-    <style>
-        .canvas {
-            background: #eee;
-    
-        }
-    </style>
+    <script src="./modernizr-custom.js"></script>
+    <link href="./style.css" rel="stylesheet">
 </head>
 <body>
-<canvas class="canvas" width="600" height="400"></canvas>
-RequsetAnimationFrame
-</body>
+<!--<canvas height="500" width="500"></canvas>-->
+<!--<script src="box.js"></script>-->
+<!--<script src="Panel.js"></script>-->
 <script>
-    // const canvas =document.querySelector(".canvas");
-    // const context=canvas.getContext("2d");
-    // let xPos=10;
+   // const canvas = document.querySelector("canvas");
+   // const ctx = canvas.getContext("2d");
+   // const boxes = [];
+   // const mousePos = {x: 0, y: 0};
+   // let oX = window.innerWidth * 0.5;
+   // let oY = window.innerHeight * 0.5;
+   // let selectedBox;
+   // let panel;
+   // let step = 1; //애플리케이션의 상태
+   // let angle;
+   //
+   //
+   // function render() {
+   //    ctx.clearRect(0, 0, canvas.width, canvas.height);
+   //    let box;
+   //    for (let i = 0; i < boxes.length; i++) {
+   //       box = boxes[i];
+   //       box.draw();
+   //    }
+   //    switch (step) {
+   //       case 1:
+   //          for (let i = 0; i < boxes.length; i++) {
+   //             box = boxes[i];
+   //             box.x += box.speed;
+   //             if (box.x > canvas.width) {
+   //                box.x = -box.width;
+   //             }
+   //          }
+   //          break;
+   //       case 2:
+   //          panel.scale = panel.scale + (1 - panel.scale) * 0.1;
+   //          panel.angle = panel.scale * Math.PI * 2;
+   //          panel.draw();
+   //
+   //          if (panel.scale >= 0.999999) {
+   //             panel.scale = 1;
+   //             step = 3;
+   //          }
+   //          break;
+   //       case 3:
+   //          panel.draw();
+   //          break;
+   //    }
+   //    // requestAnimationFrame(render);
+   // }
+   //
+   // let tempX, tempY;
+   //
+   // function init() {
+   //    panel = new Panel();
+   //    for (let i = 0; i < 10; i++) {
+   //       tempX = Math.random() * document.body.clientWidth * 0.8;
+   //       tempY = Math.random() * document.body.clientHeight * 0.8;
+   //       boxes.push(new Box(i, tempX, tempY, Math.random() + 1));
+   //    }
+   //    render();
+   // }
+   //
+   //
+   // function clickHandler(e) {
+   //    mousePos.x = e.layerX;
+   //    mousePos.y = e.layerY;
+   //    let box;
+   //    for (let i = 0; i < boxes.length; i++) {
+   //       box = boxes[i];
+   //       if (mousePos.x > box.x &&
+   //           mousePos.x < box.x + box.width &&
+   //           mousePos.y > box.y &&
+   //           mousePos.y < box.y + box.height) {
+   //
+   //          selectedBox = box;
+   //       }
+   //    }
+   //
+   //
+   //    if (selectedBox) {
+   //       step = 2;
+   //       selectedBox = null;
+   //    }
+   // }
+   //
+   // function resize() {
+   //    canvas.width = document.body.clientWidth;
+   //    canvas.height = document.body.clientHeight;
+   //
+   //    for (let i = 0; i < boxes.length; i++) {
+   //       boxes[i].draw();
+   //    }
+   //    init();
+   // }
+   //
+   //
+   // window.addEventListener("resize", resize, false);
+   // resize();
+   // render();
+   // canvas.addEventListener("click", clickHandler);
 
-    // function draw(){
-    //     context.clearRect(0,0,canvas.width,canvas.height)
-    //     context.beginPath();
-    //     context.arc(xPos,150,10,0,Math.PI*2,false);
-    //     context.fill()
-    //     xPos+=3;
-    //     // requestAnimationFrame(draw)
-    // }
-    // draw()
-    const canvas =document.querySelector(".canvas");
-    const context=canvas.getContext("2d");
-    let xPos=10;
-    let count=0;
 
-
-    function draw(){
-        if(count%30===0){
-     
-            context.clearRect(0,0,canvas.width,canvas.height)
-            context.beginPath();
-            context.arc(xPos,150,10,0,Math.PI*2,false);
-            context.fill()
-            xPos+=3;
-        }
-        count++;
-        // requestAnimationFrame(draw)
-    }
-    draw()
 </script>
-</html> 
+<script src="practice.js" type="module"></script>
+<!--<script src="app.js" type="module"></script>-->
+<!--<script src="Test.js" type="module"></script>-->
+</body>
+</html>
