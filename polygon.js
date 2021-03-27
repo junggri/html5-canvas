@@ -63,7 +63,8 @@ export class Polygon {
       ctx.translate(this.x, this.y);
 
       this.rotate -= moveX * 0.008;
-      ctx.rotate(this.rotate);
+
+      ctx.rotate(1);
 
       const angle = Math.PI * 2 / this.side;
       const angel2 = Math.PI * 2 / 4;
