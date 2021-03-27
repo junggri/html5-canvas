@@ -106,7 +106,7 @@ class Practice {
    animate() {
       window.requestAnimationFrame(this.animate.bind(this));
       this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-      this.moveX *= 0.92;
+      // this.moveX *= 0.92;
       this.rotate -= this.moveX * 0.008;
       this.polygon.animate(this.ctx, this.moveX);
    }
@@ -114,7 +114,9 @@ class Practice {
    onDown(e) {
       this.isDown = true;
       this.moveX = 0;
-      this.offsetX = e.clientX;
+      this.offsetX = Math.atan2(e.clientY, e.clientX);///라디안 값
+      console.log(this.offsetX);
+      // this.offsetX = e.clientX;
       // this.offsetX = Math.atan2(e.clientY, e.clientX);
 
    }
@@ -122,9 +124,10 @@ class Practice {
    onMove(e) {
       this.box = [];
       if (this.isDown) {
-         // this.moveX = Math.atan2(e.clientY, e.clientX);
-         this.moveX = this.offsetX - e.clientX;
-         this.offsetX = e.clientX;
+
+         this.moveX = Math.atan2(e.clientY, e.clientX) - this.offsetX;
+         // this.moveX = this.offsetX - e.clientX;
+         this.offsetX = Math.atan2(e.clientY, e.clientX);
          this.init(this.rotate);
       }
    }
@@ -136,7 +139,7 @@ class Practice {
    click(e) {
       this.mousePos.x = e.layerX;
       this.mousePos.y = e.layerY;
-      console.log(this.mousePos.x, this.mousePos.y);
+
 
    }
 }
