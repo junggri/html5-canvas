@@ -10,6 +10,7 @@ class Box {
    }
 
    draw() {
+
       ctx.fillStyle = "rgba(0,0,0,0.4)";
       ctx.fillRect(this.x, this.y, 100, 100);
       ctx.fillStyle = "white";
