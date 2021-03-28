@@ -10,6 +10,7 @@ export class Polygon {
       this.rotate = 0;
       this.moveX = [];
       this.moveY = [];
+      this.coordinate = [];
       this.color = [
          "#4b45ab",
          "#554fb8",
@@ -30,24 +31,27 @@ export class Polygon {
    }
 
 
-   draw(ctx) {
+   draw(ctx, moveX) {
       ctx.save();
       ctx.translate(this.x, this.y);
-
-      const angel2 = Math.PI * 2 / 4;
-
       ctx.fillStyle = this.color[this.index];
       ctx.translate(this.pointX, this.pointY);
       ctx.rotate(((360 / this.side) * this.index + 45) * Math.PI / 180);
-
       ctx.beginPath();
 
-      for (let j = 0; j < 4; j++) {
-         const x2 = 100 * Math.cos(angel2 * j);
-         const y2 = 100 * Math.sin(angel2 * j);
+      const angel2 = Math.PI * 2 / 4;
+      const rotateRatio = ((360 / this.side) * this.index + 45) * Math.PI / 180;
 
-         this.moveX.push(x2);
-         this.moveY.push(y2);
+      for (let j = 0; j < 4; j++) {
+         const x2 = 100 * Math.cos(angel2 * j + rotateRatio);
+         const y2 = 100 * Math.sin(angel2 * j + rotateRatio);
+         // console.log(100 * Math.cos((45 + (90 * j)) * Math.PI / 180) + this.pointX);
+         // console.log(100 * Math.cos(((360 / this.side) * this.index + 45) + (90 * j) * Math.PI / 180));
+         // const a = 100 * Math.cos(((360 / this.side) * this.index + 45) + (90 * j) * Math.PI / 180);
+         // console.log(j, 100 * Math.sin(((45 + (angel2 * j) * Math.PI / 180))));
+
+         this.moveX.push(x2 + this.pointX);
+         this.moveY.push(y2 + this.pointY);
 
          j === 0 ? ctx.moveTo(x2, y2) : ctx.lineTo(x2, y2);
       }
@@ -62,9 +66,10 @@ export class Polygon {
       ctx.beginPath();
       ctx.translate(this.x, this.y);
 
-      this.rotate -= moveX * 0.008;
+      this.rotate -= moveX * 0.1;
 
-      ctx.rotate(1);
+
+      ctx.rotate(this.rotate);
 
       const angle = Math.PI * 2 / this.side;
       const angel2 = Math.PI * 2 / 4;
@@ -82,15 +87,15 @@ export class Polygon {
          ctx.fillStyle = this.color[i];
          ctx.translate(x, y);
 
-         // ctx.rotate(((360 / this.side) * i + 45) * Math.PI / 180);
+         const rotateRatio = ((360 / this.side) * i + 45) * Math.PI / 180;
+
          ctx.beginPath();
 
-         for (let j = 0; j < 4; j++) {
-            const x2 = 100 * Math.cos(angel2 * j);
-            const y2 = 100 * Math.sin(angel2 * j);
 
-            this.moveX.push(x2);
-            this.moveY.push(y2);
+         for (let j = 0; j < 4; j++) {
+            const x2 = 100 * Math.cos(angel2 * j + rotateRatio);
+            const y2 = 100 * Math.sin(angel2 * j + rotateRatio);
+
             j === 0 ? ctx.moveTo(x2, y2) : ctx.lineTo(x2, y2);
          }
          // ctx.fill();
