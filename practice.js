@@ -70,7 +70,6 @@ class Practice {
       for (let i = 0; i < this.side; i++) {
          const x = this.radius * Math.cos((this.angle * i) + moveX) + this.centerX;
          const y = this.radius * Math.sin((this.angle * i) + moveX) + this.centerY;
-         if (i === 0) console.log(i, x, y);
          const box = new Polygon(
             this.centerX,
             this.centerY,
@@ -97,7 +96,8 @@ class Practice {
    onDown(e) {
       this.isDown = true;
       this.moveX = 0;
-      this.offsetX = Math.atan2(e.clientY - this.centerY, e.clientX - this.centerX);
+      this.offsetX = Math.atan2(e.clientY - this.centerY, e.clientX - this.centerX);//처음 좌표
+      // console.log(this.offsetX * 180 / Math.PI);
       // this.offsetX = e.clientX;
    }
 
@@ -106,7 +106,7 @@ class Practice {
       if (this.isDown) {
          // this.moveX = this.offsetX - e.clientX;
          // this.offsetX = e.clientX;
-         this.moveX = (this.offsetX - Math.atan2(e.clientY - this.centerY, e.clientX - this.centerX));
+         this.moveX = this.offsetX - Math.atan2(e.clientY - this.centerY, e.clientX - this.centerX);
          this.init(this.rotate);
       }
    }

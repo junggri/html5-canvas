@@ -36,22 +36,22 @@ export class Polygon {
       ctx.translate(this.x, this.y);
       ctx.fillStyle = this.color[this.index];
       ctx.translate(this.pointX, this.pointY);
-      ctx.rotate(((360 / this.side) * this.index + 45) * Math.PI / 180);
+
+      const rotateRatio = ((360 / this.side) * this.index + 45) * Math.PI / 180;
+
       ctx.beginPath();
 
       const angel2 = Math.PI * 2 / 4;
-      const rotateRatio = ((360 / this.side) * this.index + 45) * Math.PI / 180;
 
       for (let j = 0; j < 4; j++) {
          const x2 = 100 * Math.cos(angel2 * j + rotateRatio);
          const y2 = 100 * Math.sin(angel2 * j + rotateRatio);
-         // console.log(100 * Math.cos((45 + (90 * j)) * Math.PI / 180) + this.pointX);
-         // console.log(100 * Math.cos(((360 / this.side) * this.index + 45) + (90 * j) * Math.PI / 180));
-         // const a = 100 * Math.cos(((360 / this.side) * this.index + 45) + (90 * j) * Math.PI / 180);
-         // console.log(j, 100 * Math.sin(((45 + (angel2 * j) * Math.PI / 180))));
 
-         this.moveX.push(x2 + this.pointX);
-         this.moveY.push(y2 + this.pointY);
+         let rx, ry;
+         const radius = Math.sqrt((this.pointX - this.x + x2) ** 2 + (this.pointY - this.y + y2) ** 2);
+
+         this.moveX.push(rx + this.x);
+         this.moveY.push(ry + this.y);
 
          j === 0 ? ctx.moveTo(x2, y2) : ctx.lineTo(x2, y2);
       }
@@ -68,7 +68,6 @@ export class Polygon {
 
       this.rotate -= moveX * 0.1;
 
-
       ctx.rotate(this.rotate);
 
       const angle = Math.PI * 2 / this.side;
@@ -78,7 +77,7 @@ export class Polygon {
          const x = this.radius * Math.cos((angle * i));
          const y = this.radius * Math.sin((angle * i));
          ctx.fillStyle = "black";
-         ctx.fillText(i, x, y);
+         ctx.fillText(x, x, y);
          ctx.moveTo(0, 0);
          ctx.lineTo(x, y);
          ctx.stroke();
@@ -93,8 +92,15 @@ export class Polygon {
 
 
          for (let j = 0; j < 4; j++) {
-            const x2 = 100 * Math.cos(angel2 * j + rotateRatio);
+            const x2 = Math.floor(100 * Math.cos(angel2 * j + rotateRatio));
             const y2 = 100 * Math.sin(angel2 * j + rotateRatio);
+
+            // ctx.fillText(x2 + x + this.x, x2, y2);
+            const radius = Math.floor(Math.sqrt((this.pointX - x + x2) ** 2 + (this.pointY - y + y2) ** 2));
+            
+            const rx = Math.floor(radius * Math.cos(this.rotate + Math.atan2(y2, x2)));
+            const ry = Math.floor(radius * Math.sin(this.rotate));
+            ctx.fillText(rx + x + this.x, x2, y2);
 
             j === 0 ? ctx.moveTo(x2, y2) : ctx.lineTo(x2, y2);
          }
