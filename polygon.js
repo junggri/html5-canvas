@@ -60,9 +60,10 @@ export class Polygon {
       this.rotate -= moveX;
 
       for (let i = 0; i < this.side; i++) {
-
+         // console.log(this.boxRotateRatio * 180 / Math.PI);
          const x = this.radius * Math.cos((angle * i));
          const y = this.radius * Math.sin((angle * i));
+
          const rotateRatio = ((360 / this.side) * i - (this.boxRotateRatio * 180 / Math.PI / 2)) * Math.PI / 180;
          ctx.save();
          ctx.fillStyle = color[i];
@@ -72,6 +73,7 @@ export class Polygon {
          // ctx.closePath();
          ctx.translate(x, y);
          ctx.beginPath();
+         ;
 
          xArr = [];
          yArr = [];
@@ -91,13 +93,13 @@ export class Polygon {
                x2 = Math.floor(this.diagonal * Math.cos(angle));
                y2 = Math.floor(this.diagonal * Math.sin(angle));
             }
-
+            // ctx.fillText(String(j), x2, y2);
             const pointAngle = Math.atan2(y + y2, x + x2);
             const radius = Math.floor(Math.sqrt((x + x2) ** 2 + (y + y2) ** 2));
 
             rx = Math.floor(radius * Math.cos(this.rotate + pointAngle));
             ry = Math.floor(radius * Math.sin(this.rotate + pointAngle));
-
+            ctx.fillText(rx, x2, y2);
             xArr.push(rx);
             yArr.push(ry);
 
@@ -109,8 +111,9 @@ export class Polygon {
          // ctx.stroke();
          ctx.restore();
          ctx.fillStyle = "black";
-         ctx.font = "15px bold";
+         ctx.font = "10px bold";
          ctx.fillText(String(i), x, y);
+         // ctx.fillText(x, x, y + 10);
 
          this.coordinate.push({
             i,

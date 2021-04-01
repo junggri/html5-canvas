@@ -14,7 +14,7 @@ class Practice {
       this.mousePos = {x: 0, y: 0};
       this.rotate = 0;
       this.side = 12;
-      this.diagonal = 150;
+      this.diagonal = 120;
 
       this.centerX = 0;
       this.centerY = 0;
@@ -84,29 +84,36 @@ class Practice {
    }
 
    click(e) {
+
       this.selected = null;
       this.mousePos.x = e.layerX - this.centerX;
       this.mousePos.y = e.layerY - this.centerY;
 
+      let crossed;
       for (let i = 0; i < this.polygon.coordinate.length; i++) {
+         crossed = 0;
          let coordinate = this.polygon.coordinate[i];
 
          let maxX = Math.max(...coordinate.xArr);
          let minX = Math.min(...coordinate.xArr);
          let maxY = Math.max(...coordinate.yArr);
          let minY = Math.min(...coordinate.yArr);
-
          if (this.mousePos.x > minX && this.mousePos.x < maxX && this.mousePos.y > minY && this.mousePos.y < maxY) {
-            const radius = Math.sqrt((this.mousePos.x - coordinate.centerX) ** 2 + (this.mousePos.y - coordinate.centerY) ** 2);
-            const longRad = this.diagonal * Math.cos(this.boxRotateRatio / 2);
-            const shortRad = this.diagonal * Math.sin(this.boxRotateRatio / 2);
-            if (radius < this.diagonal && radius < shortRad || radius < this.diagonal && radius < longRad) {
+            for (let i = 0; i < 4; i++) {
+               let j = (i + 1) % 4;
+               if ((coordinate.yArr[i] > this.mousePos.y) !== (coordinate.yArr[j] > this.mousePos.y)) {
+                  const crossX = (coordinate.xArr[j] - coordinate.xArr[i]) * (this.mousePos.y - coordinate.yArr[i]) / (coordinate.yArr[j] - coordinate.yArr[i]) + coordinate.xArr[i];
+                  if (this.mousePos.x < crossX) {
+                     crossed++;
+                  }
+               }
+            }
+            if (crossed === 1) {
                this.selected = coordinate;
             }
          }
       }
-
-      console.log(this.selected);
+      console.log(this.selected, crossed);
    }
 
 }
