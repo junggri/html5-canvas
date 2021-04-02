@@ -1,21 +1,40 @@
 * {
-  outline: 0;
-  margin: 0;
-  padding: 0;
+    outline: 0;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 body {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(100, 145, 250, 0.3);
 }
 
 canvas {
-  width: 100%;
-  height: 100%;
-  border: 1px solid black;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    border: 1px solid black;
+    margin-left: 20px;
+    margin-right: 0;
+    margin-bottom: 20px;
+    border: thin solid #aaaaaa;
+    cursor: crosshair;
+    padding: 0
+}
+
+#controls {
+    margin: 20px 0px 20px 20px;
+
+}
+
+#rubberbandDiv {
+    position: absolute;
+    border: 3px solid blue;
+    cursor: crosshair;
+    display: none;
 }
