@@ -12,25 +12,15 @@ html {
 body {
     width: 100%;
     height: 100%;
-    background: rgba(100, 145, 250, 0.3);
+    /*background: rgba(100, 145, 250, 0.3);*/
 }
 
 canvas {
-    /*width: 100%;*/
-    /*height: 100%;*/
-    border: 1px solid black;
-    margin-left: 20px;
-    margin-right: 0;
-    margin-bottom: 20px;
-    border: thin solid #aaaaaa;
-    cursor: crosshair;
-    padding: 0
-}
-
-#controls {
-    margin: 20px 0px 20px 20px;
+    width: 100%;
+    height: 100%;
 
 }
+
 
 #rubberbandDiv {
     position: absolute;
